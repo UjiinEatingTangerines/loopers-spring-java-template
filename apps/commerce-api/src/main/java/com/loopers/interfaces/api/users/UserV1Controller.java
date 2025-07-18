@@ -1,7 +1,9 @@
 package com.loopers.interfaces.api.users;
 
 import com.loopers.application.users.UserInfo;
+import com.loopers.domain.users.UserModel;
 import com.loopers.interfaces.api.ApiResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,12 +23,14 @@ public class UserV1Controller implements UserV1ApiSpec{
             @RequestBody UserV1Dto.UserSignUpRequest request
     ) {
 
-        UserInfo info = new UserInfo(
+        UserModel model = new UserModel(
                 request.userId(),
                 request.gender(),
                 request.birthDate(),
                 request.email()
         );
+
+        UserInfo info = UserInfo.from(model);
 
         return ApiResponse.success(
                 UserV1Dto.UserSignUpResponse.from(info)

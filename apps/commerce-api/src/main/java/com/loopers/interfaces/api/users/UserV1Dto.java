@@ -1,6 +1,7 @@
 package com.loopers.interfaces.api.users;
 
 import com.loopers.application.users.UserInfo;
+import jakarta.validation.constraints.NotBlank;
 
 public class UserV1Dto {
 
