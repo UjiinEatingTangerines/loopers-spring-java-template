@@ -28,10 +28,15 @@ public class UserModelTest {
     @Test
     public void throwsException_whenEmailIsNotValid() {
         // given
+        String userId = "testUserId";
+        String gender = "MALE";
+        String birthDate = "2000-01-01";
+        String email = "testUserEmail";
 
-        // when
-
-        // then
+        // when & then
+        assertThrows(CoreException.class, () -> {
+            new UserModel(userId, gender, birthDate, email);
+        });
     }
 
     @DisplayName("생년월일이 yyyy-MM-dd 형식에 맞지 않으면, User 객체 생성에 실패한다.")
