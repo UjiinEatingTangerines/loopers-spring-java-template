@@ -31,6 +31,10 @@ public class UserModel extends BaseEntity {
             throw new CoreException(ErrorType.BAD_REQUEST, "이메일 형식이 올바르지 않습니다.");
         }
 
+        if (birthDate == null || !birthDate.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+            throw new CoreException(ErrorType.BAD_REQUEST, "생년월일은 yyyy-MM-dd 형식이어야 합니다.");
+        }
+
         this.userId = userId;
         this.gender = gender;
         this.birthDate = birthDate;
