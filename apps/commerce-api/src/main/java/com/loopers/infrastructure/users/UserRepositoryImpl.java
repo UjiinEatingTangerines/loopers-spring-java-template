@@ -24,4 +24,9 @@ public class UserRepositoryImpl implements UserRepository {
         );
         return Optional.of(userJpaRepository.save(userModel));
     }
+
+    @Override
+    public boolean existsByUserId(String userId) {
+        return userJpaRepository.existsByUserId(userId);
+    }
 }

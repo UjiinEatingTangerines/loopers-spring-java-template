@@ -15,6 +15,9 @@ public class UserService {
 
     @Transactional(rollbackFor = Exception.class)
     public UserModel signUp(UserV1Dto.UserSignUpRequest request){
+        if (userRepository.existsByUserId(request.userId())) {
+            throw new CoreException(ErrorType.INTERNAL_ERROR, "이미 가입된 ID입니다.");
+        }
         return userRepository.save(request)
                 .orElseThrow(() -> new CoreException(ErrorType.NOT_FOUND, "[request = " + request + "] 예시를 찾을 수 없습니다."));
     }

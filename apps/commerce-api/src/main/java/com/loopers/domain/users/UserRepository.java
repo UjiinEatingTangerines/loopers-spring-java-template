@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface UserRepository {
     Optional<UserModel> save(UserV1Dto.UserSignUpRequest request);
+    boolean existsByUserId(String userId);
 }
