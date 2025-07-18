@@ -19,6 +19,10 @@ public class UserModel extends BaseEntity {
 
     public UserModel(String userId, String gender, String birthDate, String email) {
 
+        if (userId == null || !userId.matches("^[a-zA-Z0-9]{1,10}$")) {
+            throw new CoreException(ErrorType.BAD_REQUEST, "유저 ID는 영문 및 숫자 조합 10자 이내여야 합니다.");
+        }
+
         if (gender == null || gender.isBlank()) {
             throw new CoreException(ErrorType.BAD_REQUEST, "성별은 비어있을 수 없습니다.");
         }
