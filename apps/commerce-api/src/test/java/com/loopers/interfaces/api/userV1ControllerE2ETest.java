@@ -71,7 +71,7 @@ class UserV1ControllerE2ETest {
 
     @DisplayName("회원 가입 시에 성별이 없을 경우, 400 Bad Request 응답을 반환한다.")
     @Test
-    public void returnsBadRequest_whenGenderIsMissing() {
+    void returnsBadRequest_whenGenderIsMissing() {
 
         // given
         String userId = "testUserId";
