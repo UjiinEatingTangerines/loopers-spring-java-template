@@ -27,6 +27,10 @@ public class UserModel extends BaseEntity {
             throw new CoreException(ErrorType.BAD_REQUEST, "성별은 비어있을 수 없습니다.");
         }
 
+        if (email == null || !email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            throw new CoreException(ErrorType.BAD_REQUEST, "이메일 형식이 올바르지 않습니다.");
+        }
+
         this.userId = userId;
         this.gender = gender;
         this.birthDate = birthDate;
