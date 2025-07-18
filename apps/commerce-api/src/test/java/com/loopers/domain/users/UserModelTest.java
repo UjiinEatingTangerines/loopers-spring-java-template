@@ -43,9 +43,14 @@ public class UserModelTest {
     @Test
     public void throwsException_whenBirthDateIsNotValid() {
         // given
+        String userId = "testUserId";
+        String gender = "MALE";
+        String birthDate = "2000:01:01";
+        String email = "testUserEmail@naver.com";
 
-        // when
-
-        // then
+        // when & then
+        assertThrows(CoreException.class, () -> {
+            new UserModel(userId, gender, birthDate, email);
+        });
     }
 }
