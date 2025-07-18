@@ -1,11 +1,11 @@
 package com.loopers.domain.users;
 
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.times;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 
 import com.loopers.application.users.UserFacade;
 import com.loopers.interfaces.api.users.UserV1Dto;
+import com.loopers.support.error.CoreException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +44,19 @@ public class UserServiceIntegrationTest {
     @Test
     public void throwsException_whenUserIsAlreadyRegistered() {
         // given
+        UserV1Dto.UserSignUpRequest request = new UserV1Dto.UserSignUpRequest(
+                "testUserId",
+                "MALE",
+                "2000-01-01",
+                "test@naver.com"
+        );
 
         // when
+        userFacade.signUp(request); // 첫 번째 가입
 
         // then
-
+        assertThrows(CoreException.class, () -> {
+            userFacade.signUp(request); // 중복 가입 시도
+        });
     }
 }
