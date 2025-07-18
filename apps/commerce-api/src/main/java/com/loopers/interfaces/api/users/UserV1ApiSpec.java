@@ -12,7 +12,6 @@ public interface UserV1ApiSpec {
             summary = "유저 회원가입",
             description = "ID 및 성별, 생년월일, 이메일 주소로 유저 회원가입을 처리합니다."
     )
-    //TODO: response 수정, @Schema 수정
     ApiResponse<UserV1Dto.UserSignUpResponse> signUp(
             @Schema(description = "회원가입 요청 정보")
             UserV1Dto.UserSignUpRequest request
